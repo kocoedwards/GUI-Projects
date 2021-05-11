@@ -8,11 +8,6 @@ def results():
     print(results)
     print(type(results))
 
-def addToList():
-    newItem = E1.get()
-    groceryList.append(newItem)
-    E1.delete(0, END)
-
 def exportList():
     with open ('test.txt', 'w') as f:
         for item in groceryList:
@@ -30,13 +25,19 @@ def mainMenu():
     B1Main = Button(text = "    Week 1    ", bg = "#9966ff", command = week1)
     B1Main.grid(column = 3, row = 2)
     
-    B2Main = Button(text = "    Week 2    ", bg = "#ffcc66")
-    B2Main.grid(column = 3, row 3)
+    B2Main = Button(text = "    Week 2    ", bg = "#ffcc66", command = week2)
+    B2Main.grid(column = 3, row = 3)
     
     B3Main = Button(text = "    Week 3     ", bg = "#009999")
     B3Main.grid(column = 3, row = 4)
 
 def week1():
+
+    def addToList():
+        newItem = E1.get()
+        groceryList.append(newItem)
+        E1.delete(0, END)
+    
     clearWindow()
     #This is a Label widget
     L1 = Label(top, text = "Grocery List")
@@ -49,18 +50,41 @@ def week1():
 
     #This is a Button widget
     B1 = Button(text = "    Print Your List    ", bg = "#d6fded", command = results)
-    B1.grid(column = 1, row = 2)
+    B1.grid(column = 0, row = 3)
+    
     B2 = Button(text = "    Add to List    ", bg = "#ff00ed", command = addToList)
-    B2.grid(column = 0, row = 3)
+    B2.grid(column = 1, row = 2)
+    
     B3 = Button(text = "    Export List    ", bg = "#e4a29f", command = exportList)
-    B3.grid(column = 1, row = 3)
+    B3.grid(column = 0, row = 4)
 
+    
+    Bclear = Button(text = "    Clear Window    ", bg = "#ffff99", command = mainMenu)
+    Bclear.grid(column = 3, row = 1)
 
-    """
-    Bclear = Button(text = "    Clear Window    ", bg = "#ffff99", command = clearWindow)
-    Bclear.grid(column = 3, row = 3)
-    """
+def week2():
+    clearWindow()
+    L1W2 = Label(text="Dice Roller Program")
+    L1W2.grid(column = 0, row = 1)
+    
+    L2W2 = Label(top, text = "How many sides?")
+    L2W2.grid(column = 0, row = 2)
+
+    L3W2 = Label(top, text = "How many  rolls?")
+    L3W2.grid(column = 2, row = 2)
+
+    E1W2 = Entry(top, bd = 5)
+    E1W2.grid(column = 0, row = 3)
+
+    E2W2 = Entry(top, bd = 5)
+    E2W2.grid(column = 2, row = 3)
+
+    B1W2 = Button(text="Roll", bg= "yellow")
+    B1W2.grid(column = 2, row = 4)
+
+    #to add: roll function and exit button
+    
 
 if "__name__" == "__main__":
-    
-top.mainloop()
+    mainMenu()
+    top.mainloop()
