@@ -1,12 +1,18 @@
 from tkinter import *
+import random
 
 top = Tk()
 groceryList = []
+myRolls = []
+rollTimes = 0
+dieType = 0
 
 def results():
     results = E1.get()
     print(results)
     print(type(results))
+
+
 
 def exportList():
     with open ('test.txt', 'w') as f:
@@ -19,7 +25,7 @@ def clearWindow():
 
 def mainMenu():
     clearWindow()
-    LMain = Label(top, tetx = "Block 5 GUI Projects")
+    LMain = Label(top, text = "Block 5 GUI Projects")
     LMain.grid(column = 3, row = 1)
     
     B1Main = Button(text = "    Week 1    ", bg = "#9966ff", command = week1)
@@ -63,6 +69,30 @@ def week1():
     Bclear.grid(column = 3, row = 1)
 
 def week2():
+    def rollDice():
+        #upate our variable data
+        dieType = E1W2.get()
+        rollTimes = E2W2.get()
+        
+        #clear window AFTER pulling Entry data
+        clearWindow()
+        
+        #calculate dice rolls
+        for x in range(0, int(rollTimes)):
+            myRolls.append(random.randint(1, int(dieType)))
+            
+        #display dice rolls and present and exit button
+        L4W2 = Label(top, text = "Here are your rolls!")
+        L4W2.grid(column = 0, row = 1)
+        #this one will use a .format() statement
+        L5W2 = Label(top, text = "()" .format(myRolls))
+        L5W2.grid(column = 0, row = 2)
+        
+        B2W2 = Button(text = "Main Menu", bg = "#ffccff", command = mainMenu)
+        B2W2.grid(column = 0, row = 3)
+
+        
+    
     clearWindow()
     L1W2 = Label(text="Dice Roller Program")
     L1W2.grid(column = 0, row = 1)
@@ -79,12 +109,12 @@ def week2():
     E2W2 = Entry(top, bd = 5)
     E2W2.grid(column = 2, row = 3)
 
-    B1W2 = Button(text="Roll", bg= "yellow")
+    B1W2 = Button(text="Roll", bg= "#ccff99", command = rollDice)
     B1W2.grid(column = 2, row = 4)
 
     #to add: roll function and exit button
     
 
-if "__name__" == "__main__":
+if __name__ == "__main__":
     mainMenu()
     top.mainloop()
