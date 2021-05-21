@@ -2,7 +2,6 @@ from tkinter import *
 import random
 import datetime
 import tkinter as tk
-from PIL import Image, Imagetk
 
 top = Tk()
 groceryList = []
@@ -94,7 +93,6 @@ def week2():
 
 def week3():
     def ageGenerator():
-        
         window=tk.Tk()
         window.geometry("620x780")
         window.title(" Age Calculator App ")
