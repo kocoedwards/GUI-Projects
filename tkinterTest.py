@@ -1,18 +1,14 @@
 from tkinter import *
 import random
+import datetime
+import tkinter as tk
+from PIL import Image, Imagetk
 
 top = Tk()
 groceryList = []
 myRolls = []
 rollTimes = 0
 dieType = 0
-
-def results():
-    results = E1.get()
-    print(results)
-    print(type(results))
-
-
 
 def exportList():
     with open ('test.txt', 'w') as f:
@@ -34,11 +30,16 @@ def mainMenu():
     B2Main = Button(text = "    Week 2    ", bg = "#ffcc66", command = week2)
     B2Main.grid(column = 3, row = 3)
     
-    B3Main = Button(text = "    Week 3     ", bg = "#009999")
+    B3Main = Button(text = "    Week 3     ", bg = "#009999", command = week3)
     B3Main.grid(column = 3, row = 4)
 
 def week1():
-
+    
+    def results():
+        results = E1.get()
+        print(results)
+        print(type(results))
+    
     def addToList():
         newItem = E1.get()
         groceryList.append(newItem)
@@ -66,7 +67,7 @@ def week1():
 
     
     Bclear = Button(text = "    Clear Window    ", bg = "#ffff99", command = mainMenu)
-    Bclear.grid(column = 3, row = 1)
+    Bclear.grid(column = 1, row = 3)
 
 def week2():
     def rollDice():
@@ -85,13 +86,47 @@ def week2():
         L4W2 = Label(top, text = "Here are your rolls!")
         L4W2.grid(column = 0, row = 1)
         #this one will use a .format() statement
-        L5W2 = Label(top, text = "()" .format(myRolls))
+        L5W2 = Label(top, text = "{}" .format(myRolls))
         L5W2.grid(column = 0, row = 2)
         
         B2W2 = Button(text = "Main Menu", bg = "#ffccff", command = mainMenu)
         B2W2.grid(column = 0, row = 3)
 
+def week3():
+    def ageGenerator():
         
+        window=tk.Tk()
+        window.geometry("620x780")
+        window.title(" Age Calculator App ")
+
+        #This is a Label widget
+        name = tk.Label(text = "Name")
+        name.grid(column = 0, row = 1)
+        year = tk.Label (text = "Year")
+        year.grid(column = 0, row = 2)
+        month = tk.Label(text = "Month")
+        month.grid(column = 0, row = 3)
+        dtae = tk.Label(text = "Day")
+        date.grid(column = 0, row = 4)
+
+        #This is a Entry widget
+        nameEntry = tk.Entry()
+        nameEntry.grid(column = 1, row =1)
+        yearEntry = tk.Entry()
+        yerEntry.grid(column = 1, row = 2)
+        monthEntry = tk.Entry()
+        monthEntry.grid(column = 1, row = 3)
+        dateEntry = tk.Entry
+        dateEntry.grid(column = 1, row = 4)
+        
+    def getInput():
+        name=nameEntry.get()
+        monkey = Person(name,datetime.date(int(yearEntry.get()), int(montEntry.get()), int(dateEntry.get())))
+        textArea = tl.Text(master=window,height=10,width=25)
+        textArea.grid(column = 1, row = 6)
+        answer = " Heyy (monkey)!!!. You are (age) years old!!! ".format(monkey=name, age=monkey.age())
+        textArea.insert(tk.END, answer)
+    button=tk.Button(window, text = "Calculate Age", command = get, bg = "pink")
     
     clearWindow()
     L1W2 = Label(text="Dice Roller Program")
